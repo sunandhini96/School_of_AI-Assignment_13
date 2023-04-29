@@ -34,6 +34,8 @@ from my observation in case 2 and case 4 loss values are very less compared to r
 
 Misclassified images for MNIST data :
 
-<img width="757" alt="image" src="https://user-images.githubusercontent.com/63030539/235317270-ea2b7bd5-ad82-4e6d-9bca-4fe5a22959f0.png">
+
+![image](https://user-images.githubusercontent.com/63030539/235317339-a980fb47-8b0e-4cf3-b7a5-82221fc152ea.png)
+
 
 
