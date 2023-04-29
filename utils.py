@@ -160,19 +160,18 @@ def visualize_augmentations(dataset, idx=0, samples=5):
 
 # In[ ]:
 
-
 class DiceLoss(nn.Module):
     def __init__(self, smooth=1e-5):
         super().__init__()
         self.smooth = smooth
 
     def forward(self, pred, target):
-        probabilities = torch.sigmoid(pred)
+        probabilities = torch.sigmoid(pred).float()
         target = target.float()
-        predicted_masks = probabilities.gt(0.5).float()
+        #predicted_masks = probabilities.gt(0.5).float()
         
-        intersection = (predicted_masks * target).sum(dim=(1, 2))
-        union = predicted_masks.sum(dim=(1, 2)) + target.sum(dim=(1, 2))
+        intersection = (probabilities * target).sum(dim=(1, 2))
+        union = probabilities.sum(dim=(1, 2)) + target.sum(dim=(1, 2))
         
         dice = (2. * intersection + self.smooth) / (union + self.smooth)
 
