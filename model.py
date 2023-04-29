@@ -296,9 +296,9 @@ class DoubleConv(nn.Module):
     def forward(self, x):
         return self.double_conv(x)
 
-class ContractingBlock(nn.Module):
+class ContractingBlock_3(nn.Module):
     def __init__(self, in_channels, out_channels):
-        super(ContractingBlock, self).__init__()
+        super(ContractingBlock_3, self).__init__()
 
         self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1)
         self.bn1 = nn.BatchNorm2d(out_channels)
@@ -329,9 +329,9 @@ class ContractingBlock(nn.Module):
 
         return x, skip
 
-class ExpandingBlock(nn.Module):
+class ExpandingBlock_3(nn.Module):
     def __init__(self, in_channels, out_channels):
-        super(ExpandingBlock, self).__init__()
+        super(ExpandingBlock_3, self).__init__()
 
         self.upsample = nn.ConvTranspose2d(in_channels, in_channels//2, kernel_size=2, stride=2)
         self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1)
@@ -361,18 +361,18 @@ class UNet_3(nn.Module):
     def __init__(self, in_channels=3, out_channels=1):
         super(UNet_3, self).__init__()
 
-        self.contract1 = ContractingBlock(3, 64)
-        self.contract2 = ContractingBlock(64, 128)
-        self.contract3 = ContractingBlock(128, 256)
-        self.contract4 = ContractingBlock(256, 512)
+        self.contract1 = ContractingBlock_3(3, 64)
+        self.contract2 = ContractingBlock_3(64, 128)
+        self.contract3 = ContractingBlock_3(128, 256)
+        self.contract4 = ContractingBlock_3(256, 512)
 
 
                 # Center
         self.center = DoubleConv(512, 1024)
-        self.expand1 = ExpandingBlock(1024, 512)
-        self.expand2 = ExpandingBlock(512, 256)
-        self.expand3 = ExpandingBlock(256, 128)
-        self.expand4 = ExpandingBlock(128, 64)
+        self.expand1 = ExpandingBlock_3(1024, 512)
+        self.expand2 = ExpandingBlock_3(512, 256)
+        self.expand3 = ExpandingBlock_3(256, 128)
+        self.expand4 = ExpandingBlock_3(128, 64)
 
         self.final_conv = nn.Conv2d(64, out_channels, kernel_size=1)
         self.sigmoid = nn.Sigmoid()
@@ -418,9 +418,9 @@ class DoubleConv(nn.Module):
     def forward(self, x):
         return self.double_conv(x)
 
-class ContractingBlock(nn.Module):
+class ContractingBlock_4(nn.Module):
     def __init__(self, in_channels, out_channels):
-        super(ContractingBlock, self).__init__()
+        super(ContractingBlock_4, self).__init__()
 
         self.conv1 = nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1)
         self.bn1 = nn.BatchNorm2d(out_channels)
@@ -451,9 +451,9 @@ class ContractingBlock(nn.Module):
 
         return x, skip
 
-class ExpandingBlock(nn.Module):
+class ExpandingBlock_4(nn.Module):
     def __init__(self, in_channels, out_channels):
-        super(ExpandingBlock, self).__init__()
+        super(ExpandingBlock_4, self).__init__()
 
         self.upsample = nn.Sequential(
             nn.Upsample(scale_factor=2, mode='bilinear', align_corners=False),
@@ -487,18 +487,18 @@ class UNet_4(nn.Module):
     def __init__(self, in_channels=3, out_channels=1):
         super(UNet_4, self).__init__()
 
-        self.contract1 = ContractingBlock(3, 64)
-        self.contract2 = ContractingBlock(64, 128)
-        self.contract3 = ContractingBlock(128, 256)
-        self.contract4 = ContractingBlock(256, 512)
+        self.contract1 = ContractingBlock_4(3, 64)
+        self.contract2 = ContractingBlock_4(64, 128)
+        self.contract3 = ContractingBlock_4(128, 256)
+        self.contract4 = ContractingBlock_4(256, 512)
 
 
                 # Center
         self.center = DoubleConv(512, 1024)
-        self.expand1 = ExpandingBlock(1024, 512)
-        self.expand2 = ExpandingBlock(512, 256)
-        self.expand3 = ExpandingBlock(256, 128)
-        self.expand4 = ExpandingBlock(128, 64)
+        self.expand1 = ExpandingBlock_4(1024, 512)
+        self.expand2 = ExpandingBlock_4(512, 256)
+        self.expand3 = ExpandingBlock_4(256, 128)
+        self.expand4 = ExpandingBlock_4(128, 64)
 
         self.final_conv = nn.Conv2d(64, out_channels, kernel_size=1)
         self.sigmoid = nn.Sigmoid()
@@ -523,7 +523,6 @@ class UNet_4(nn.Module):
 
 
 # In[ ]:
-
 
 
 
