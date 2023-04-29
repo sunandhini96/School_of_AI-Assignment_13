@@ -26,7 +26,7 @@ case 4: StrConv+Ups+Dice Loss
 
 
 
-from my observation in case 2 loss values are very less compared to remaining 3 cases. But in case 3 pet classified correctly one image chair classified correctly but in other cases chair classified as segmenatation (label class).
+from my observation in case 2 and case 4 loss values are very less compared to remaining 2 cases. But in case 3 pet classified correctly one image chair classified correctly but in other cases chair classified as segmenatation (label class).
 
 
 
